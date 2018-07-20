@@ -29,7 +29,7 @@ def main():
                     print("Sent Report For :"+rack[0])
         cursor.close()
         conn.close()
-    elif prefs['restock']:
+    if prefs['restock']:
         url = settings['server']['host'] + "/shelves/api/restock/generate/0"
         response = requests.request("GET", url)
         if response.status_code == '200':
