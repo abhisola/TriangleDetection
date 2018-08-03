@@ -50,7 +50,7 @@ def main(argv):
         print("Invalid date")
         usage()
         sys.exit(2)
-          
+
   if rackNum == '' or subjectDate == '':
     usage()
     sys.exit(2)
@@ -81,7 +81,8 @@ def main(argv):
   for filename in sorted(os.listdir('/tmp/s3/' + path)):
     filenameParts = filename.split("-")
     shelf_num = filenameParts[0]
-    date_recorded = subjectYear + "-" + subjectMonth + "-" + subjectDay + " " + filenameParts[1][:-4]
+    # date_recorded = subjectYear + "-" + subjectMonth + "-" + subjectDay + " " + filenameParts[1][:-4]
+    date_recorded = subjectYear + "-" + subjectMonth + "-" + subjectDay + " " + filenameParts[1]
     command = '''python shelfspace.py {0} -i "/tmp/s3/{1}/{2}" '''.format(rackDetails[rackNum][filenameParts[0]]["args"],path,filename)
     print('\n'+filename);
     try:
