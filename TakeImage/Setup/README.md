@@ -30,7 +30,10 @@ $ sudo apt-get update
 ```sh
 $ sudo apt-get install arduino
 ```
-
+## One Line Install
+```sh
+sudo apt-get install fswebcam gnome-schedule libusb-dev arduino
+```
 ### Setup Directory Structure
 Create Folder With rack name. ex: Overland, Target 2
 
