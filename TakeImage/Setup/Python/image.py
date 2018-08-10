@@ -25,7 +25,7 @@ MM = today.minute if today.minute > 9 else '0' + str(today.minute)
 H = today.hour if today.hour > 9 else '0' + str(today.hour)
 bucket_name = 'my-rack'
 temp_folder = 'temp'
-temp_path = '/home/pi/'+home_folder+'/temp'
+temp_path = os.path.join(home_folder, temp_folder)
 
 s3 = boto3.resource('s3')
 bucket = s3.Bucket(bucket_name)
