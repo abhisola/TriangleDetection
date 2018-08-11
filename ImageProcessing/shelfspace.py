@@ -129,7 +129,7 @@ def main(argv):
     fullPercent = 1.0 - float(finalCount)/float(baseTriangleCount)
 
     # build output dictionary
-    if bounds != []:
+    if bounds.size > 0:
         bounds = bounds.tolist()
 
     #if distortCoeffs != []:

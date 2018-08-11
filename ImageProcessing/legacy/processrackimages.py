@@ -83,8 +83,10 @@ def main(argv):
     shelf_num = filenameParts[0]
     # date_recorded = subjectYear + "-" + subjectMonth + "-" + subjectDay + " " + filenameParts[1][:-4]
     date_recorded = subjectYear + "-" + subjectMonth + "-" + subjectDay + " " + filenameParts[1]
+    dateString = date_recorded[0:-4]
     command = '''python shelfspace.py {0} -i "/tmp/s3/{1}/{2}" '''.format(rackDetails[rackNum][filenameParts[0]]["args"],path,filename)
-    print('\n'+filename);
+    print('\n'+filename)
+
     try:
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         process.wait(30)
@@ -94,10 +96,11 @@ def main(argv):
     detectionDetails = json.load( process.stdout )
 
     # lookup last value if we don't already have one
+
     if shelf_num not in last_value:
       cursor.execute(
         "SELECT percent_full FROM shelf_stock "
-         + "WHERE date_recorded < '" + date_recorded + "'"
+         + "WHERE date_recorded < '" + dateString + "'"
          + "AND racknum = '" + rackNum + "' "
          + "AND shelf_num = '" + shelf_num + "' "
          + "ORDER BY shelf_stock.date_recorded DESC LIMIT 1" )
@@ -119,7 +122,7 @@ def main(argv):
       + "','" + str( detectionDetails["TriangleCount"] )
       + "','" + str( detectionDetails["Parameters"]["TrianglesExpected"] )
       + "','" + str( detectionDetails["PercentFull"] )
-      + "','" + date_recorded
+      + "','" + dateString
       + "','" + aws + path + "/" + filename 
       + "','" + str( low_stock )
       + "','" + str( detectionDetails["PercentFull"] - float(last_value[shelf_num] )) + "')\n" )
@@ -136,8 +139,8 @@ def main(argv):
   sys.stdout.write("\n")
 
   # clean up tmp files
-  #process = subprocess.Popen("rm -R /tmp/s3/*", shell=True, stdout=subprocess.PIPE)
-  #process.wait()
+  process = subprocess.Popen("rm -R /tmp/s3/*", shell=True, stdout=subprocess.PIPE)
+  process.wait(120)
 
 def usage():
     print("python processrackimages.py -r 000000 -d YYYY-MM-DD")
