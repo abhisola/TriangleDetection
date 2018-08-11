@@ -14,8 +14,8 @@ import time
 from os import path
 from datetime import datetime
 
-racknum = '000088'
-home_folder = 'Olathe'
+racknum = '000088' # your Rack Id Here
+home_folder = 'FolderName' # Folder Name Here
 shelves = (0, 1, 2, 3)
 today = datetime.today()
 Y = today.year if today.year > 9 else '0' + str(today.year)
@@ -23,9 +23,9 @@ M = today.month if today.month > 9 else '0' + str(today.month)
 D = today.day if today.day > 9 else '0' + str(today.day)
 MM = today.minute if today.minute > 9 else '0' + str(today.minute)
 H = today.hour if today.hour > 9 else '0' + str(today.hour)
-bucket_name = 'my-rack'
+bucket_name = 'smart-rack-bucket'
 temp_folder = 'temp'
-temp_path = os.path.join(home_folder, temp_folder)
+temp_path = '/home/pi/'+home_folder+'/'+temp_folder
 
 s3 = boto3.resource('s3')
 bucket = s3.Bucket(bucket_name)
