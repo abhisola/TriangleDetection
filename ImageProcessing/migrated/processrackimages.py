@@ -136,8 +136,8 @@ def main(argv):
   sys.stdout.write("\n")
 
   # clean up tmp files
-  #process = subprocess.Popen("rm -R /tmp/s3/*", shell=True, stdout=subprocess.PIPE)
-  #process.wait()
+  process = subprocess.Popen("rm -R /tmp/s3/*", shell=True, stdout=subprocess.PIPE)
+  process.wait(120)
 
 def usage():
     print("python processrackimages.py -r 000000 -d YYYY-MM-DD")
