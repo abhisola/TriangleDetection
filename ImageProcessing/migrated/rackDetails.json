@@ -1,0 +1,125 @@
+{
+  "000000": {
+    "name": "Chicago Office",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 270"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 280"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 280"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 300"
+    }
+  },
+  "000001": {
+    "name": "DG Prototype SmarTRack (Goodletttsville, TN)",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,513,2592,400,2592,1944,200,1944\" --paf 7 --arcmin 180 --legmax 110 --legmin 50 --legvar 40 --expected 203"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,588,2592,633,2592,1944,0,1944\" --paf 7 --arcmin 180 --legmax 110 --legmin 50 --legvar 40 --expected 200"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,277,2592,373,2493,1828,0,1798\" --paf 9 --arcmin 150 --areamin 1700 --legmax 110 --legmin 50 --legvar 40 --expected 203"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"819,1476,1839,1488,2019,1944,615,1944\" --paf 12 --arcmin 10 --areamin 200 --legmax 110 --legmin 15 --legvar 40 --expected 203"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,390,2592,285,2592,1784,40,1858\" --paf 9 --arcmin 180 --areamin 1200 --legmax 130 --legmin 50 --legvar 40 --expected 203"
+    },
+    "5": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,390,2592,285,2592,1784,40,1858\" --paf 9 --arcmin 180 --areamin 1200 --legmax 130 --legmin 50 --legvar 40 --expected 203"
+    },
+    "6": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,390,2592,285,2592,1784,40,1858\" --paf 9 --arcmin 180 --areamin 1200 --legmax 130 --legmin 50 --legvar 40 --expected 203"
+    }
+  },
+  "000002": {
+    "name": "ITCUS OFFICE RACK (Schaumburg)",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,513,2592,400,2592,1944,200,1944\" --paf 7 --arcmin 180 --legmax 110 --legmin 50 --legvar 40 --expected 203"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,588,2592,633,2592,1944,0,1944\" --paf 7 --arcmin 180 --legmax 110 --legmin 50 --legvar 40 --expected 200"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,277,2592,373,2493,1828,0,1798\" --paf 9 --arcmin 150 --areamin 1700 --legmax 110 --legmin 50 --legvar 40 --expected 203"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"819,1476,1839,1488,2019,1944,615,1944\" --paf 12 --arcmin 10 --areamin 200 --legmax 110 --legmin 15 --legvar 40 --expected 203"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,390,2592,285,2592,1784,40,1858\" --paf 9 --arcmin 180 --areamin 1200 --legmax 130 --legmin 50 --legvar 40 --expected 203"
+    },
+    "5": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,390,2592,285,2592,1784,40,1858\" --paf 9 --arcmin 180 --areamin 1200 --legmax 130 --legmin 50 --legvar 40 --expected 203"
+    },
+    "6": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,390,2592,285,2592,1784,40,1858\" --paf 9 --arcmin 180 --areamin 1200 --legmax 130 --legmin 50 --legvar 40 --expected 203"
+    }
+  },
+  "000003": {
+    "name": "T1757 Overland Park (12200 Blue Valley PKVY, Overland Park, KS)",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,650,0,650\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 333"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,650,0,650\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 333"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,650,0,650\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 333"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,50,1228,247,1228,695,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 333 "
+    }
+  },
+  "000004": {
+    "name": "T1756 Olathe (15345 W 119TH ST, Olathe, KS)",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,650,0,650\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 333"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,650,0,650\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 333"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,650,0,650\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 333"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,50,1228,247,1228,695,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 100 --areamax 1000 --expected 333 "
+    }
+  },
+    "000005": {
+    "name": "Target A",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+    "000006": {
+    "name": "Target B",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "postgres" : {
+    "hostname" : "smart-rack.c7neg6roarnk.us-east-1.rds.amazonaws.com",
+    "username" : "azizahtas",
+    "password" : "azizahtas",
+    "database" : "smartrack"
+  },
+  "s3" : {
+    "url" : "https://my-rack.s3.amazonaws.com/",
+    "bucket" : "my-rack"
+  },
+  "server" : {
+    "host" : "https://smartrackapi.herokuapp.com",
+    "local" : "http://localhost:3001"
+  },
+  "prefs" : {
+    "restock" : true,
+    "shelves_report" : true
+  }
+}
