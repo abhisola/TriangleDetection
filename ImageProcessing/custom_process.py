@@ -44,20 +44,22 @@ def main(argv):
         log += '---------\n'
         try:
             process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-            log += process.stdout.read()
-            print(process.stdout.read())
+            output, err = process.communicate()
+            log += str(output)
+            print(output)
             process.wait()
         except subprocess.TimeoutExpired:
             pass
 
-        log += '-------\\------\n'
+        log += '\n-------\\------\n'
 
+    create_log(subjectDate)
 def usage():
     print("python custom_process.py -d YYYY-MM-DD")
     print("  -d YYYY-MM-DD : UTC date ex: 2016-11-28")
 
 def create_log(date):
-    path = "/logs/"+date+".txt"
+    path = "./logs/"+date+".txt"
     f = open(path, "w+")
     f.write(log)
     f.close()
