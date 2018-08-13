@@ -15,6 +15,7 @@
   },
   "prefs" : {
     "restock" : true,
-    "shelves_report" : true
+    "shelves_report" : true,
+    "logs" : true
   }
 }
