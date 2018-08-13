@@ -151,5 +151,35 @@
     "3": {
       "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
     }
+  },
+  "001": {
+    "name": "Target Demo",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "002": {
+    "name": "Target Demo",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
   }
 }
