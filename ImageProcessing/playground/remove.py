@@ -7,4 +7,8 @@ def create_log(date):
     f.write('''Helllo Friends Chai Peelo''')
     f.close()
 
-create_log("2018-06-12")
+#create_log("2018-06-12")
+
+racks = ('001', '002')
+r = "Racks Are " + str(racks)
+print(r)
