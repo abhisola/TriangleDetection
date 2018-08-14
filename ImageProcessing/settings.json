@@ -16,6 +16,6 @@
   "prefs" : {
     "restock" : true,
     "shelves_report" : true,
-    "logs" : true
+    "logs" : false
   }
 }

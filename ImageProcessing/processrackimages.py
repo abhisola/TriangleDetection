@@ -5,7 +5,7 @@ import subprocess
 import os
 import psycopg2
 from datetime import date, timedelta
-import shutil
+
 
 with open('settings.json') as jsonData:
   settings = json.load(jsonData)
@@ -90,7 +90,7 @@ def main(argv):
 
     try:
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        process.wait(30)
+        process.wait(1)
     except subprocess.TimeoutExpired:
       pass
     
@@ -137,10 +137,7 @@ def main(argv):
 
   cursor.close()
   conn.close()
-  sys.stdout.write("\n")
-
-  # clean up tmp files
-  shutil.rmtree('/tmp/s3')
+  #sys.stdout.write("\n")
 
 def usage():
     print("python processrackimages.py -r 000000 -d YYYY-MM-DD")

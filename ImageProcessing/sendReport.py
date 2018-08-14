@@ -32,6 +32,7 @@ def main():
     if prefs['restock']:
         url = settings['server']['host'] + "/shelves/api/restock/generate/0"
         response = requests.request("GET", url)
+        print(response)
         if response.status_code == '200':
             print("Generated restock response for yesterday :")
 

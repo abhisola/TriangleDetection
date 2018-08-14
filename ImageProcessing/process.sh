@@ -1,6 +1,6 @@
 #!/bin/bash
 # racks to process
-RACKS=('000000' '000001' '000002' '000003' '000004' '000005' '000006')
+RACKS=('000003' '000004' '000005' '000006')
 DATE=$1
 if [ -z $DATE ]
   then
@@ -18,14 +18,5 @@ then
     python processrackimages.py -r $i -d $DATE
   done
 # otherwise run up to the end date, NOT including the end date
-else
-  while [ "$DATE" != $ENDDATE ]; do 
-    echo "Processing $DATE  "
-    for i in "${RACKS[@]}"
-    do
-      python processrackimages.py -r $i -d $DATE
-    done
-    DATE=$(date -I -d "$DATE + 1 day")
-  done
 fi
 
