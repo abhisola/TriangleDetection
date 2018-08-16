@@ -25,7 +25,7 @@ def main():
             for rack in racks:
                 url = settings['server']['host']+"/shelves/api/sendreport/0/"+rack[0]
                 response = requests.request("GET", url)
-                if response.status_code == '200':
+                if response.status_code == 200:
                     print("Sent Report For :"+rack[0])
         cursor.close()
         conn.close()
@@ -33,7 +33,7 @@ def main():
         url = settings['server']['host'] + "/shelves/api/restock/generate/0"
         response = requests.request("GET", url)
         print(response)
-        if response.status_code == '200':
+        if response.status_code == 200:
             print("Generated restock response for yesterday :")
 
 # call main function

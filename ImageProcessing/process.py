@@ -58,7 +58,7 @@ def main(argv):
         command = '''python processrackimages.py -r {0} -d {1}'''.format( found_rack, subjectDate)
         print('\n' + 'Processing Rack '+found_rack)
         try:
-            process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+            process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             output, err = process.communicate()
             print(output)
             process.wait(1)
