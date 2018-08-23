@@ -73,6 +73,6 @@ def usage():
 # call main function
 if __name__ == "__main__":
     # clean up tmp files
-    #shutil.rmtree('/tmp/s3')
+    shutil.rmtree('/tmp/s3')
     main(sys.argv[1:])
 
