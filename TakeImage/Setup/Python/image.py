@@ -83,7 +83,6 @@ def hubController(a=True):
     print(hubctrl)
     print('\n')
     print('Turning {0} hub with Dev {1}, Port {2}'.format(msg, hub_dev_num, hub_port_num))
-
     process = subprocess.Popen(hubctrl, shell=True, stdout=subprocess.PIPE)
     print(process.stdout.read())
 
