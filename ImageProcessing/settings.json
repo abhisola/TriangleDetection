@@ -17,6 +17,8 @@
     "restock" : true,
     "shelves_report" : true,
     "logs" : false,
-    "timelapse_fps": 2
+    "timelapse_fps": 2,
+    "high_compression": 28,
+    "low_compression" : 18
   }
 }

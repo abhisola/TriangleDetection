@@ -24,6 +24,8 @@ password = settings['postgres']['password']
 database = settings['postgres']['database']
 aws = settings['s3']['url']
 fps = settings['prefs']['timelapse_fps']
+HIGH_COMPRESSION = settings['prefs']['high_compression']
+LOW_COMPRESSION = settings['prefs']['low_compression']
 bucket_name = settings['s3']['bucket']
 temp_folder = 'temp_image/s3/'
 s3 = boto3.resource('s3')
@@ -101,9 +103,11 @@ def processImages(rackNum):
         if os.path.isdir(temp_folder + path + folder):
             videoName = 'Timelapse-' + folder.split('-')[1]
             image_path = temp_folder + path + folder + '/' + '%01d.jpg'
-            output_path = temp_folder + path + folder + '/' + videoName + '.mp4'
+            output_path = temp_folder + path + folder + '/' + videoName + '-Raw.mp4'
+            output_compressed_path = temp_folder + path + folder + '/' + videoName + '.mp4'
             makeVideo = 'ffmpeg -r {0} -f image2 -start_number 0 -i {1} -codec:v prores -profile:v 2 {2}'.format(
                 fps, image_path, output_path)
+            compressVideo = 'ffmpeg -i {0} -c:v libx264 -preset slow -crf {1} -c:a copy -pix_fmt yuv420p {2}'.format(output_path, HIGH_COMPRESSION, output_compressed_path)
             print('Making Video ')
             print(makeVideo)
             process = subprocess.Popen(makeVideo, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
@@ -112,7 +116,13 @@ def processImages(rackNum):
             print(output)
             print('Error- ')
             print(err)
-            uploadVideo(output_path, path)
+            compress_process = subprocess.Popen(compressVideo, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+            output, err = compress_process.communicate()
+            print('Compress_Output- ')
+            print(output)
+            print('Compress_Error- ')
+            print(err)
+            uploadVideo(output_compressed_path, path)
             data = {}
             data['racknum'] = rackNum
             data['url'] = aws + path + videoName + '.mp4'
@@ -126,7 +136,7 @@ def uploadVideo(local_path, s3_path):
     print('Uploading From {0} To {1}'.format(local_path, s3_path))
     if checkFileExists(local_path):
         if checkBucketExists():
-            s3.Object(bucket, s3_path).put(Body=open(local_path, 'rb'))
+            s3.Object(bucket_name, s3_path).put(Body=open(local_path, 'rb'))
 
 
 def saveToDatabase(data):
