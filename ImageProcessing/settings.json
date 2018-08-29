@@ -16,6 +16,7 @@
   "prefs" : {
     "restock" : true,
     "shelves_report" : true,
-    "logs" : false
+    "logs" : false,
+    "timelapse_fps": 2
   }
 }

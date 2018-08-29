@@ -126,7 +126,7 @@ def uploadVideo(local_path, s3_path):
     print('Uploading From {0} To {1}'.format(local_path, s3_path))
     if checkFileExists(local_path):
         if checkBucketExists():
-            s3.Object(bucket_name, s3_path).put(Body=open(local_path, 'rb'))
+            s3.Object(bucket, s3_path).put(Body=open(local_path, 'rb'))
 
 
 def saveToDatabase(data):

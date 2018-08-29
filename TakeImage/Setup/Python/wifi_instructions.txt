@@ -1,0 +1,5 @@
+Copy the bash program to your pi.
+Make sure  the bash script has execute permission.
+  (chmod +x wifireboot.sh)
+Finally add the script to cron ( here the update interval is 5 minutes)
+	( */5 * * * * root /usr/local/bin/wifi_rebooter.sh)
