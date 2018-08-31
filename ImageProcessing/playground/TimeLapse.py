@@ -127,6 +127,7 @@ def processImages(rackNum):
             data['racknum'] = rackNum
             data['url'] = aws + path + videoName + '.mp4'
             data['date_recorded'] = subjectDate
+            data['shelf'] = folder.split('-')[1]
             saveToDatabase(data)
     print('Done Creating, Saving, Uploading')
 
@@ -145,8 +146,10 @@ def saveToDatabase(data):
     # setup DB
     conn = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
     cursor = conn.cursor()
-    query = "INSERT INTO timelapse (racknum, url, date_recorded) VALUES('{0}', '{1}', '{2}')".format(data['racknum'],
+    query = "INSERT INTO timelapse (racknum, url, shelf, date_recorded) VALUES('{0}', '{1}', '{2}', '{3}')".format(
+                                                                                               data['racknum'],
                                                                                                data['url'],
+                                                                                               data['shelf'],
                                                                                                data['date_recorded'])
     cursor.execute(query)
     conn.commit()
