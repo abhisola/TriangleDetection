@@ -5,7 +5,8 @@
 # aws configure
 # Enter You key, secret keep everything as default, make output format to json
 
-
+import sys
+import getopt
 import boto3
 import botocore
 import json
@@ -14,8 +15,9 @@ from os import path
 import psycopg2
 from datetime import date, timedelta
 import subprocess
+import time
 
-with open('../settings.json') as jsonData:
+with open('settings.json') as jsonData:
     settings = json.load(jsonData)
     jsonData.close()
 hostname = settings['postgres']['hostname']
@@ -50,7 +52,6 @@ def getNumShelves(files):
             num.append(name[0])
     return num
 
-
 def renameImages(dir):
     dict = {}
     i = 0
@@ -59,7 +60,6 @@ def renameImages(dir):
         if len(image) > 1:
             name = image.split('-')
             key = name[1][0:-4]
-            print(key)
             dict[key] = image
     for key in sorted(dict):
         try:
@@ -70,14 +70,20 @@ def renameImages(dir):
 
 
 def processImages(rackNum):
-    path = rackNum + "/" + subjectYear + "/" + subjectMonth + "/" + subjectDay + "/"
+    print('Getting Images For Racknum '+str(rackNum))
+    path = str(rackNum) + "/" + subjectYear + "/" + subjectMonth + "/" + subjectDay + "/"
     command = "aws s3 sync s3://" + bucket_name + "/" + path + " " + temp_folder + path
     try:
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        process.wait(60)
-        print('Images Synced')
+        process.wait(10)
+        print(command)
+        print('Images Synced for '+str(rackNum))
     except subprocess.TimeoutExpired:
         pass
+    if checkFileExists(temp_folder+path+'videos'):
+        print('Removing Folder videos')
+        shutil.rmtree(temp_folder+path+'videos')
+        time.sleep(5)
     files = os.listdir(temp_folder + path)
     shelves = getNumShelves(files)
     print('Shelves ' + str(shelves))
@@ -91,7 +97,7 @@ def processImages(rackNum):
                 name = file.split('-')
                 if name[0] == shelf:
                     shelf_array.append(file)
-                    shutil.copy(temp_folder + path + file, temp_folder + path + 'video-' + shelf + '/' + file)
+                    shutil.move(temp_folder + path + file, temp_folder + path + 'video-' + shelf + '/' + file)
 
         renameImages(temp_folder + path + 'video-' + shelf + '/')
         print("Shelf Images ")
@@ -111,25 +117,28 @@ def processImages(rackNum):
             print('Making Video ')
             print(makeVideo)
             process = subprocess.Popen(makeVideo, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-            output, err = process.communicate()
-            print('Output- ')
-            print(output)
-            print('Error- ')
-            print(err)
+            stdout, stderr = process.communicate()
+            #print('Output- ')
+            #print(output)
+            #print('Error- ')
+            #print(err)
+            print(compressVideo)
             compress_process = subprocess.Popen(compressVideo, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-            output, err = compress_process.communicate()
-            print('Compress_Output- ')
-            print(output)
-            print('Compress_Error- ')
-            print(err)
-            uploadVideo(output_compressed_path, path)
+            stdout, stderr = compress_process.communicate()
+            #print('Compress_Output- ')
+            #print(stdout)
+            #print('Compress_Error- ')
+            #print(stderr)
+            s3_video_path =  path + 'videos/' + videoName + '.mp4'
+            uploadVideo(output_compressed_path, s3_video_path)
             data = {}
             data['racknum'] = rackNum
-            data['url'] = aws + path + videoName + '.mp4'
+            data['url'] = aws + s3_video_path
             data['date_recorded'] = subjectDate
             data['shelf'] = folder.split('-')[1]
             saveToDatabase(data)
     print('Done Creating, Saving, Uploading')
+    
 
 
 def uploadVideo(local_path, s3_path):
@@ -138,21 +147,33 @@ def uploadVideo(local_path, s3_path):
     if checkFileExists(local_path):
         if checkBucketExists():
             s3.Object(bucket_name, s3_path).put(Body=open(local_path, 'rb'))
+        else :
+            print('Bucket {0} doesnot exists'.format(bucket_name))
+    else :
+        print('File Doesnot Exists : '+local_path)
 
 
 def saveToDatabase(data):
-    print('Saving To Database: ')
-    print(data.items())
-    # setup DB
     conn = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
     cursor = conn.cursor()
-    query = "INSERT INTO timelapse (racknum, url, shelf, date_recorded) VALUES('{0}', '{1}', '{2}', '{3}')".format(
+    print('Checking If Already Saved')
+    check_exist = "SELECT * from timelapse where racknum='{0}' AND url='{1}' AND shelf='{2}' AND date_recorded='{3}'".format(
                                                                                                data['racknum'],
                                                                                                data['url'],
                                                                                                data['shelf'],
                                                                                                data['date_recorded'])
-    cursor.execute(query)
-    conn.commit()
+    cursor.execute(check_exist)
+    if cursor.rowcount <= 0:
+        print('Saving To Database: ')
+        print(data.items())
+        # setup DB
+        query = "INSERT INTO timelapse (racknum, url, shelf, date_recorded) VALUES('{0}', '{1}', '{2}', '{3}')".format(
+                                                                                                data['racknum'],
+                                                                                                data['url'],
+                                                                                                data['shelf'],
+                                                                                                data['date_recorded'])
+        cursor.execute(query)
+        conn.commit()
     cursor.close()
     conn.close()
 
@@ -193,6 +214,10 @@ def createFolder(directory):
     except OSError:
         print('Error: Creating directory. ' + directory)
 
+def removeTempFolder():
+    print('Doing House Cleaning')
+    shutil.rmtree(temp_folder)
+    time.sleep(5)
 
 def emptyFolder(folder):
     for the_file in os.listdir(folder):
@@ -206,15 +231,47 @@ def emptyFolder(folder):
         except Exception as e:
             print(e)
 
+def usage():
+    print("python processrackimages.py -d YYYY-MM-DD")
+    print("  -d YYYY-MM-DD : UTC date ex: 2016-11-28")
 
-def main():
-    processImages('000006')
-    # fetchRacks()
-    # if len(racknums) > 0:
-    # for racknum in racknums:
-    # processImages('000006')
+def main(argv):
+    global subjectDate
+    global subjectYear
+    global subjectMonth
+    global subjectDay
+    if checkFileExists(temp_folder):
+        removeTempFolder()
+    # parse commandline parameters
+    try:
+        opts, args = getopt.getopt(argv, "d:")
+    except getopt.GetoptError:
+        usage()
+        sys.exit(2)
+
+    if opts is None:
+        usage()
+        sys.exit(2)
+        
+    for opt, arg in opts:
+        if opt == '-d':
+            subjectDate = arg
+            dateParts = subjectDate.split("-")
+            subjectYear = dateParts[0]
+            subjectMonth = dateParts[1]
+            subjectDay = dateParts[2]
+        if len(dateParts) != 3 or len(subjectYear) != 4 or len(subjectMonth) != 2 or len(subjectDay) != 2 :
+            print("Invalid date")
+            usage()
+            sys.exit(2)
+
+    fetchRacks()
+    if len(racknums) > 0:
+        for racknum in racknums:
+            processImages(racknum[0])
+    #processImages('000102')
 
 
 # call main function
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

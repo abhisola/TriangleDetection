@@ -3,7 +3,7 @@ import getopt
 import sys
 from datetime import date, timedelta
 
-RACKS = ('001', '002')
+RACKS = ('000102')
 log = ''''''
 def main(argv):
     global log

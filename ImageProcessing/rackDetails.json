@@ -137,6 +137,195 @@
       "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
     }
   },
+  "000102": {
+    "name": "DG1",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "5": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "6": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "7": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000103": {
+    "name": "DG2",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "5": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "6": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "7": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000104": {
+    "name": "DG3",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "5": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "6": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "7": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000105": {
+    "name": "DG4",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "5": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "6": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "7": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000106": {
+    "name": "DG5",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "5": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "6": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "7": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000107": {
+    "name": "DG6",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "5": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "6": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "7": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000108": {
+    "name": "DG7",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "5": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "6": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "7": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1280,0,1280,720,0,720\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
   "009999": {
     "name": "Target Demo",
     "0": {

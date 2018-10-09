@@ -1,6 +1,6 @@
 #!/bin/bash
 # racks to process
-RACKS=('000007')
+RACKS=('000102')
 DATE=$1
 if [ -z $DATE ]
   then
