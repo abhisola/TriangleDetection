@@ -1,1 +1,1 @@
-start bash process.sh
+start python process.py

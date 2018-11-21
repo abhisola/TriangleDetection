@@ -5,7 +5,9 @@ import subprocess
 import os
 import psycopg2
 from datetime import date, timedelta
-
+import time
+import os, sys, shutil
+from os import path
 
 with open('settings.json') as jsonData:
   settings = json.load(jsonData)
@@ -67,10 +69,13 @@ def main(argv):
   command = "aws s3 sync s3://"+settings['s3']['bucket']+"/" + path + " /tmp/s3/" + path
   try:
       process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-      process.wait(60)
+      process.wait(10)
   except subprocess.TimeoutExpired:
     pass
-
+  if checkFileExists('/tmp/s3/'+path+'/videos'):
+        print('Removing Folder videos')
+        shutil.rmtree('/tmp/s3/'+path+'/videos')
+        time.sleep(5)
   # setup DB
   conn = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
   cursor = conn.cursor()
@@ -79,6 +84,7 @@ def main(argv):
   sys.stdout.flush()
   triangles = list()
   last_value = dict()
+
   for filename in sorted(os.listdir('/tmp/s3/' + path)):
     filenameParts = filename.split("-")
     shelf_num = filenameParts[0]
@@ -138,7 +144,8 @@ def main(argv):
   cursor.close()
   conn.close()
   #sys.stdout.write("\n")
-
+def checkFileExists(file):
+    return path.exists(file)
 def usage():
     print("python processrackimages.py -r 000000 -d YYYY-MM-DD")
     print("  -r 000000 : unique rack ID number")
