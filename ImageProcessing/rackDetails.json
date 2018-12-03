@@ -137,6 +137,210 @@
       "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
     }
   },
+  "000008": {
+    "name": "Target One",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000009": {
+    "name": "Target Two",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000010": {
+    "name": "Target Three",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000011": {
+    "name": "Target Four",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000012": {
+    "name": "Target Five",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000013": {
+    "name": "Target Six",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000014": {
+    "name": "Target Seven",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000015": {
+    "name": "Target Eight",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    },
+    "4": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000080": {
+    "name": "Parfet One",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000081": {
+    "name": "Parfet Two",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000082": {
+    "name": "Parfet Three",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
+  "000083": {
+    "name": "Parfet Four",
+    "0": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "1": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "2": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 210"
+    },
+    "3": {
+      "args": "--undistort \"-0.00002,0.0000000004,0.00006,0.00006\" -b \"0,0,1920,0,1920,1080,0,1080\" --paf 7 --arcmin 45 --legmax 80 --legmin 10 --legvar 30 --areamin 350 --areamax 1500 --expected 300"
+    }
+  },
   "000102": {
     "name": "DG1",
     "0": {
