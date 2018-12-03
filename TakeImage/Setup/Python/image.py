@@ -16,6 +16,7 @@ from datetime import datetime
 
 racknum = '000088' # your Rack Id Here
 home_folder = 'FolderName' # Folder Name Here
+cameras = (0, 1, 2, 3)
 shelves = (0, 1, 2, 3)
 today = datetime.today()
 Y = today.year if today.year > 9 else '0' + str(today.year)
@@ -91,9 +92,9 @@ def main():
     # fsopts = "-S 5 -D 3 --font sans:72 --no-banner -r 1280x720 --jpeg 65"
     fsopts = "-S 30 -D 5 --font sans:50 --banner-colour 0xFF$racknum --line-colour 0xFF000000 -r 1280x720 --jpeg 65"
 
-    for a in shelves:
-        command = 'fswebcam --device /dev/video{0} {1} /home/pi/{2}/{3}/{4}.jpg'.format(str(a), fsopts, home_folder,
-                                                                                         temp_folder, str(a))
+    for a in range(len(shelves)):
+        command = 'fswebcam --device /dev/video{0} {1} /home/pi/{2}/{3}/{4}.jpg'.format(str(camera[a]), fsopts, home_folder,
+                                                                                         temp_folder, str(shelves[a]))
         try:
             #hubController(False)
             #time.sleep(5)
