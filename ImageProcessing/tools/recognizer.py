@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from __future__ import division
 import cv2
 import sys
-import getopt
 import json
 import numpy as np
 import math
+
 
 class TriRecognizeParams:
     def __init__(self):
@@ -25,22 +26,39 @@ class TriRecognizeParams:
         self.minLegLength = 10
         self.maxLegLength = 100
         self.maxLegVar = 100
+        self.heightLegRatio = 2.5
+        self.legRatio = -1
         self.baseTriangleCount = 252
         self.staticThreshold = 128
         self.bounds = []
         self.distortCoeffs = np.zeros((8, 1), np.float64)
+        self.colorCorr = False
 
 
 class TriRecognizer:
-    @staticmethod
-    def processImage(srcImageFile, params):
+    def __init__(self):
+        self.__reset()
+
+    def __reset(self):
+        self._rawContourCount = 0
+        self._rawTriCount = 0
+        self._boundTriCount = 0
+        self._arclenTriCount = 0
+        self._areaTriCount = 0
+        self._legLengthTriCount = 0
+        self._legVarTriCount = 0
+        self._finalTriCount = 0
+
+    def processImage(self, srcImageFile, params):
+        self.__reset()
+
         # read source
-        image = TriRecognizer.readSourceImage(srcImageFile, params)
+        image = self.prepareSourceImage(srcImageFile, params)
 
         # detect triangles
-        contourCount, rawTriCount, boundCount, arcCount, areaCount, finalCount, tris = TriRecognizer.findTriangles(image, params)
+        triList = self.findTriangles(image, params)
 
-        fullPercent = 1.0 - float(finalCount) / float(params.baseTriangleCount)
+        fullPercent = 1.0 - float(self._finalTriCount) / float(params.baseTriangleCount)
 
         # build output dictionary
         bounds = []
@@ -62,6 +80,8 @@ class TriRecognizer:
             'MinLegLength': params.minLegLength,
             'MaxLegLength': params.maxLegLength,
             'MaxLegVariation': params.maxLegVar,
+            'MaxLegRatio': params.legRatio,
+            'MaxHeightRatio': params.heightLegRatio,
             'PolygonApproximationFactor': params.polyApproxFactor,
             'UseAdaptiveThreshold': params.useThreshold,
             'SharpenImage': params.useSharpen,
@@ -70,31 +90,63 @@ class TriRecognizer:
             'UndistortImage': str(params.useDistort),
             'UndistortCoeffs': distortCoeffs,
             'UseStaticThreshold': params.useStaticThreshold,
+            'ColorCorrection': params.colorCorr,
             'StaticThreshold': params.staticThreshold,
             'EqualizeHistogram': str(params.equalizeHist)},
             'DetectionDetails': {
-                'ContourCount': contourCount,
-                'RawTriangleCount': rawTriCount,
-                'InBoundingPolyCount': boundCount,
-                'CorrectArclenTriangleCount': arcCount,
-                'CorrectAreaTriangleCount': areaCount,
+                'ContourCount': self._rawContourCount,
+                'RawTriangleCount': self._rawTriCount,
+                'InBoundingPolyCount': self._boundTriCount,
+                'CorrectArclenTriangleCount': self._arclenTriCount,
+                'CorrectAreaTriangleCount': self._areaTriCount,
+                'CorrectLegLengthTriangleCount': self._legLengthTriCount,
+                'CorrectLegVarTriangleCount': self._legVarTriCount,
                 'ImageWidth': imgwidth,
                 'ImageHeight': imgheight,
                 'TriangleCoords': tris
             },
-            'TriangleCount': finalCount,
+            'TriangleCount': self._finalTriCount,
             'PercentFull': fullPercent}
 
         # write output JSON to STDOUT
         # json.dump(outDict, sys.stdout, indent=4)
         json.dump(outDict, sys.stdout)
+        sys.stdout.write('\n')
         # sys.stdout.write(str('\nTrangles Count: '+str(outDict['TriangleCount'])+'\nPercent: '+str(outDict['PercentFull'])))
         # sys.stdout.write(str(outDict))
 
     @staticmethod
-    def readSourceImage(s, params):
+    def __rmShadow(img):
+        rgb_planes = cv2.split(img)
+
+        result_planes = []
+        result_norm_planes = []
+        for plane in rgb_planes:
+            # dilated_img = cv2.dilate(plane, np.ones((7, 7), np.uint8))
+            dilated_img = cv2.dilate(plane, np.ones((3, 3), np.uint8))
+            # dilated_img = cv2.dilate(plane, np.ones((17, 17), np.uint8))
+            # bg_img = cv2.medianBlur(dilated_img, 21)
+            bg_img = cv2.medianBlur(dilated_img, 95)
+            # bg_img = cv2.medianBlur(dilated_img, 95)
+            diff_img = 255 - cv2.absdiff(plane, bg_img)
+            # norm_img = cv2.normalize(diff_img, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8UC1)
+            result_planes.append(diff_img)
+            # result_norm_planes.append(norm_img)
+
+        img = cv2.merge(result_planes)
+        # img = cv2.merge(result_norm_planes)
+
+        return img
+
+    @staticmethod
+    def __colorCorrection(img):
+        _, _, img = cv2.split(img)
+        return img
+
+    @staticmethod
+    def prepareSourceImage(srcImageFile, params):
         # read input file
-        img = cv2.imread(s)
+        img = cv2.imread(srcImageFile)
         # write state image
         if params.outputState == True:
             cv2.imwrite('state_01_input.jpg', img)
@@ -111,7 +163,10 @@ class TriRecognizer:
                 cv2.imwrite('state_03_sharpen.jpg', img)
 
         # convert to grayscale
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        if params.colorCorr:
+            img = TriRecognizer.__colorCorrection(img)
+        else:
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         # write state image
         if params.outputState == True:
             cv2.imwrite('state_04_grayscale.jpg', img)
@@ -126,13 +181,14 @@ class TriRecognizer:
         # apply adaptive threshold to image
         if params.useThreshold == True:
             img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 19, 15)
+
             # write state image
             if params.outputState == True:
                 cv2.imwrite('state_06_adaptivethreshold.jpg', img)
 
         # apply static threshold to image
         if params.useStaticThreshold == True:
-            _, img = cv2.threshold(img, staticThreshold, 255, cv2.THRESH_BINARY)
+            _, img = cv2.threshold(img, params.staticThreshold, 255, cv2.THRESH_BINARY)
             # write state image
             if params.outputState == True:
                 cv2.imwrite('state_07_staticthreshold.jpg', img)
@@ -145,8 +201,8 @@ class TriRecognizer:
 
         w = img.shape[1]
         h = img.shape[0]
-        camMatrix[0, 2] = img.shape[1] / 2.0  # width
-        camMatrix[1, 2] = img.shape[0] / 2.0  # height
+        camMatrix[0, 2] = w / 2.0  # width
+        camMatrix[1, 2] = h / 2.0  # height
         camMatrix[0, 0] = 10.0
         camMatrix[1, 1] = 10.0
 
@@ -179,26 +235,103 @@ class TriRecognizer:
         return int(math.sqrt(deltax * deltax + deltay * deltay))
 
     @staticmethod
+    def __pointDistance(lx1, ly1, lx2, ly2, px, py):
+        s = (ly2 - ly1) * px - (lx2 - lx1) * py + lx2 * ly1 - ly2 * lx1
+        return abs(s / TriRecognizer.__segLen(lx1, ly1, lx2, ly2))
+
+    @staticmethod
     def __drawTriangle(img, shape, color=(0, 255, 0), lineWidth=4):
         cv2.line(img, (shape[0][0][0], shape[0][0][1]), (shape[1][0][0], shape[1][0][1]), color, lineWidth)
         cv2.line(img, (shape[1][0][0], shape[1][0][1]), (shape[2][0][0], shape[2][0][1]), color, lineWidth)
         cv2.line(img, (shape[2][0][0], shape[2][0][1]), (shape[0][0][0], shape[0][0][1]), color, lineWidth)
 
-    @staticmethod
-    def findTriangles(img, params):
-        rawContourCount = 0
-        rawTriCount = 0
-        boundTriCount = 0
-        arclenTriCount = 0
-        areaTriCount = 0
-        legLengthTriCount = 0
-        legVarTriCount = 0
-        finalTriCount = 0
+    def __checkTriangleGeometry(self, shape, params, images, stateColor, stateLineWidth):
+        arcLength = cv2.arcLength(shape, True)
+
+        if arcLength > params.minArcLength and arcLength < params.maxArcLength:
+            self._arclenTriCount += 1
+
+            if params.outputState == True:
+                self.__drawTriangle(images[0], shape, stateColor, stateLineWidth)
+
+            area = cv2.contourArea(shape)
+
+            if area > params.minArea and area < params.maxArea:
+                self._areaTriCount += 1
+                # triName="tri" + str(self._finalTriCount)
+                # triList[triName]={"x1":int(shape[0][0][0]),"y1":shape[0][0][1],"x2":shape[1][0][0],"y2":shape[1][0][1],"x3":shape[2][0][0],"y3":shape[2][0][1]}
+
+                if params.outputState == True:
+                    self.__drawTriangle(images[1], shape, stateColor, stateLineWidth)
+
+                leglen1 = TriRecognizer.__segLen(shape[0][0][0], shape[0][0][1], shape[1][0][0], shape[1][0][1])
+                leglen2 = TriRecognizer.__segLen(shape[1][0][0], shape[1][0][1], shape[2][0][0], shape[2][0][1])
+                leglen3 = TriRecognizer.__segLen(shape[2][0][0], shape[2][0][1], shape[0][0][0], shape[0][0][1])
+
+                if leglen1 > params.minLegLength and leglen2 > params.minLegLength and leglen3 > params.minLegLength and \
+                                leglen1 < params.maxLegLength and leglen2 < params.maxLegLength and leglen3 < params.maxLegLength:
+                    self._legLengthTriCount += 1
+
+                    if params.outputState == True:
+                        self.__drawTriangle(images[2], shape, stateColor, stateLineWidth)
+
+                    legDiff = False
+                    if params.legRatio >= 0:
+                        if (max(leglen1, leglen2) / min(leglen1, leglen2)) < params.legRatio and \
+                                        (max(leglen1, leglen3) / min(leglen1, leglen3)) < params.legRatio and \
+                                        (max(leglen3, leglen2) / min(leglen3, leglen2)) < params.legRatio:
+                            legDiff = True
+                    else:
+                        if abs(leglen1 - leglen2) < params.maxLegVar and \
+                                        abs(leglen2 - leglen3) < params.maxLegVar and \
+                                        abs(leglen1 - leglen3) < params.maxLegVar:
+                            legDiff = False
+
+                    if legDiff:
+                        self._legVarTriCount += 1
+
+                        if params.outputState == True:
+                            self.__drawTriangle(images[3], shape, stateColor, stateLineWidth)
+
+                        h1 = self.__pointDistance(shape[0][0][0], shape[0][0][1],
+                                                  shape[1][0][0], shape[1][0][1],
+                                                  shape[2][0][0], shape[2][0][1])
+                        h2 = self.__pointDistance(shape[1][0][0], shape[1][0][1],
+                                                  shape[2][0][0], shape[2][0][1],
+                                                  shape[0][0][0], shape[0][0][1])
+                        h3 = self.__pointDistance(shape[2][0][0], shape[2][0][1],
+                                                  shape[0][0][0], shape[0][0][1],
+                                                  shape[1][0][0], shape[1][0][1])
+
+                        # checking triangle heights
+                        if (leglen2 / h1) < params.heightLegRatio and (leglen3 / h1) < params.heightLegRatio and \
+                                        (leglen1 / h2) < params.heightLegRatio and (
+                                    leglen3 / h2) < params.heightLegRatio and \
+                                        (leglen1 / h3) < params.heightLegRatio and (
+                                    leglen2 / h3) < params.heightLegRatio:
+
+                            if params.outputState == True:
+                                self.__drawTriangle(images[4], shape, stateColor, stateLineWidth)
+
+                            return True
+        return False
+
+    def findTriangles(self, img, params):
         triList = []
         tmpTriList = []
         stateColor = (0, 255, 0)
         stateBoundColor = (0, 0, 255)
         stateLineWidth = 4
+        imgContours = None
+        imgPAF = None
+        imgRawTris = None
+        imgBoundedTris = None
+        imgArcLen = None
+        imgArea = None
+        imgLegLength = None
+        imgLegVar = None
+        imgCrossTris = None
+        imgHeight = None
 
         if params.outputState == True:
             imgOutput = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
@@ -227,6 +360,7 @@ class TriRecognizer:
             imgLegLength = imgOutput.copy()
             imgLegVar = imgOutput.copy()
             imgCrossTris = imgOutput.copy()
+            imgHeight = imgOutput.copy()
 
         _, contours, _ = cv2.findContours(img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -234,7 +368,7 @@ class TriRecognizer:
             cv2.drawContours(imgContours, contours, -1, stateColor, stateLineWidth)
 
         for i in range(0, len(contours)):
-            rawContourCount += 1
+            self._rawContourCount += 1
             shape = cv2.approxPolyDP(contours[i], params.polyApproxFactor, True)
 
             if params.outputState == True:
@@ -243,53 +377,19 @@ class TriRecognizer:
 
             if len(shape) == 3:
                 if params.outputState == True:
-                    TriRecognizer.__drawTriangle(imgRawTris, shape, stateColor, stateLineWidth)
+                    self.__drawTriangle(imgRawTris, shape, stateColor, stateLineWidth)
 
-                rawTriCount += 1
+                self._rawTriCount += 1
                 if TriRecognizer.__checkBounds(shape, params.useBounds, params.bounds) == True:
-                    boundTriCount += 1
+                    self._boundTriCount += 1
 
                     if params.outputState == True:
-                        TriRecognizer.__drawTriangle(imgBoundedTris, shape, stateColor, stateLineWidth)
+                        self.__drawTriangle(imgBoundedTris, shape, stateColor, stateLineWidth)
 
-                    arcLength = cv2.arcLength(shape, True)
-
-                    if arcLength > params.minArcLength and arcLength < params.maxArcLength:
-                        arclenTriCount += 1
-
-                        if params.outputState == True:
-                            TriRecognizer.__drawTriangle(imgArcLen, shape, stateColor, stateLineWidth)
-
-                        area = cv2.contourArea(shape)
-
-                        if area > params.minArea and area < params.maxArea:
-                            # finalTriCount += 1
-                            areaTriCount += 1
-                            # triName="tri" + str(finalTriCount)
-                            # triList[triName]={"x1":int(shape[0][0][0]),"y1":shape[0][0][1],"x2":shape[1][0][0],"y2":shape[1][0][1],"x3":shape[2][0][0],"y3":shape[2][0][1]}
-
-                            if params.outputState == True:
-                                TriRecognizer.__drawTriangle(imgArea, shape, stateColor, stateLineWidth)
-
-                            leglen1 = TriRecognizer.__segLen(shape[0][0][0], shape[0][0][1], shape[1][0][0], shape[1][0][1])
-                            leglen2 = TriRecognizer.__segLen(shape[1][0][0], shape[1][0][1], shape[2][0][0], shape[2][0][1])
-                            leglen3 = TriRecognizer.__segLen(shape[2][0][0], shape[2][0][1], shape[0][0][0], shape[0][0][1])
-
-                            if (leglen1 > params.minLegLength and leglen2 > params.minLegLength and leglen3 > params.minLegLength) and \
-                                    (leglen1 < params.maxLegLength and leglen2 < params.maxLegLength and leglen3 <params. maxLegLength):
-                                legLengthTriCount += 1
-
-                                if params.outputState == True:
-                                    TriRecognizer.__drawTriangle(imgLegLength, shape, stateColor, stateLineWidth)
-
-                                if abs(leglen1 - leglen2) < params.maxLegVar and \
-                                        abs(leglen2 - leglen3) < params.maxLegVar and \
-                                        abs(leglen1 - leglen3) < params.maxLegVar:
-                                    legVarTriCount += 1
-                                    tmpTriList.append(shape)
-
-                                    if params.outputState == True:
-                                        TriRecognizer.__drawTriangle(imgLegVar, shape, stateColor, stateLineWidth)
+                    if self.__checkTriangleGeometry(shape, params,
+                                                    (imgArcLen, imgArea, imgLegLength, imgLegVar, imgHeight),
+                                                    stateColor, stateLineWidth):
+                        tmpTriList.append(shape)
 
         # remove crossed or internal triangles
         tmpTriList = np.array(tmpTriList, np.int32)
@@ -301,7 +401,7 @@ class TriRecognizer:
                     break;
 
             if not cross:
-                finalTriCount += 1
+                self._finalTriCount += 1
                 triList.append([[int(shape[0][0][0]), int(shape[0][0][1])],
                                 [int(shape[1][0][0]), int(shape[1][0][1])],
                                 [int(shape[2][0][0]), int(shape[2][0][1])]])
@@ -319,6 +419,7 @@ class TriRecognizer:
             cv2.imwrite('state_13_area.jpg', imgArea)
             cv2.imwrite('state_14_leglength.jpg', imgLegLength)
             cv2.imwrite('state_15_legvar.jpg', imgLegVar)
-            cv2.imwrite('state_16_cross.jpg', imgCrossTris)
+            cv2.imwrite('state_16_height.jpg', imgHeight)
+            cv2.imwrite('state_17_cross.jpg', imgCrossTris)
 
-        return (rawContourCount, rawTriCount, boundTriCount, arclenTriCount, areaTriCount, finalTriCount, triList)
+        return triList
