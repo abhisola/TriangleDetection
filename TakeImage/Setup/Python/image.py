@@ -108,11 +108,11 @@ def main():
             print('--------***---------')
             process.wait(60)
         except subprocess.TimeoutExpired:
-            print('Timed Out For Video' + str(a))
+            print('Timed Out For Video' + str(camera[a]))
             pass
-        filename = str(a) + '-' + str(H) + str(MM) + '.jpg'
+        filename = str(shelves[a]) + '-' + str(H) + str(MM) + '.jpg'
         path = racknum + '/' + str(Y) + '/' + str(M) + '/' + str(D) + '/' + filename
-        local_path = '/home/pi/{0}/temp/{1}.jpg'.format(home_folder, str(a))
+        local_path = '/home/pi/{0}/temp/{1}.jpg'.format(home_folder, shelves[a])
         if checkFileExists(local_path):
             if checkBucketExists():
                 msg = 'Uploading Image On -> {0}-{1}-{2} {3}:{4}'.format(str(Y), str(M), str(D), str(H), str(MM))
