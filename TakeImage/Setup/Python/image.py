@@ -93,7 +93,7 @@ def main():
     fsopts = "-S 30 -D 5 --font sans:50 --banner-colour 0xFF$racknum --line-colour 0xFF000000 -r 1280x720 --jpeg 65"
 
     for a in range(len(shelves)):
-        command = 'fswebcam --device /dev/video{0} {1} /home/pi/{2}/{3}/{4}.jpg'.format(str(camera[a]), fsopts, home_folder,
+        command = 'fswebcam --device /dev/video{0} {1} /home/pi/{2}/{3}/{4}.jpg'.format(str(cameras[a]), fsopts, home_folder,
                                                                                          temp_folder, str(shelves[a]))
         try:
             #hubController(False)
@@ -108,7 +108,7 @@ def main():
             print('--------***---------')
             process.wait(60)
         except subprocess.TimeoutExpired:
-            print('Timed Out For Video' + str(camera[a]))
+            print('Timed Out For Video' + str(cameras[a]))
             pass
         filename = str(shelves[a]) + '-' + str(H) + str(MM) + '.jpg'
         path = racknum + '/' + str(Y) + '/' + str(M) + '/' + str(D) + '/' + filename
