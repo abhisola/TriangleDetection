@@ -6,6 +6,7 @@ import getopt
 import numpy as np
 from tools.recognizer import TriRecognizeParams, TriRecognizer
 
+
 # main program entry point - decode parameters, act accordingly
 def main(argv):
     params = TriRecognizeParams()
@@ -14,7 +15,9 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, "hi:b:ps",
                                    ["help", "arcmin=", "arcmax=", "areamin=", "areamax=", "paf=", "state", "nothresh",
-                                    "legmin=", "legmax=", "legvar=", "expected=", "undistort=", "thresh=", "equhist"])
+                                    "legmin=", "legmax=", "legvar=", "legratio=", "heightratio=", "expected=",
+                                    "undistort=",
+                                    "thresh=", "equhist", "color"])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -37,6 +40,7 @@ def main(argv):
             print("Minimum leg length: " + str(params.minLegLength))
             print("Maximum leg length: " + str(params.maxLegLength))
             print("Maximum leg variation: " + str(params.maxLegVar))
+            print("Maximum leg ratio: " + str(params.legRatio))
             print("Expected triangle count: " + str(params.baseTriangleCount))
             sys.exit()
         elif opt == '-i':
@@ -81,6 +85,10 @@ def main(argv):
             params.maxLegLength = int(arg)
         elif opt == '--legvar':
             params.maxLegVar = int(arg)
+        elif opt == '--legratio':
+            params.legRatio = float(arg)
+        elif opt == '--heightratio':
+            params.heightLegRatio = float(arg)
         elif opt == '--paf':
             params.polyApproxFactor = float(arg)
         elif opt == '--state':
@@ -94,12 +102,16 @@ def main(argv):
             params.baseTriangleCount = int(arg)
         elif opt == '--equhist':
             params.equalizeHist = True
+        elif opt == '--color':
+            params.colorCorr = True
 
     if srcImageFile == '':
         usage()
         sys.exit(2)
 
-    TriRecognizer.processImage(srcImageFile, params)
+    recognizer = TriRecognizer()
+    recognizer.processImage(srcImageFile, params)
+
 
 def usage():
     print("shelfspace.py parameters")
@@ -116,6 +128,8 @@ def usage():
     print(" --legmin val   minimum leg length for triangle filtering")
     print(" --legmax val   maximum leg length for triangle filtering")
     print(" --legvar val   maximum difference in triangle leg length")
+    print(" --legratio val maximum difference in triangle leg length (ratio)")
+    print(" --heightratio val maximum difference between legs and height of a triangle (ratio)")
     print(" --nothresh     disable adaptive threshold step")
     print(" --thresh val   perform manual threshold at specified value")
     print(" -p             display default parameter values")
@@ -123,6 +137,7 @@ def usage():
     print(" --expected     expected number of triangles detectable in empty shelf")
     print(" --undistort coeffs   apply undistort filter to image (coeffs is list of 4 parameters)")
     print(" --equhist      equalize input image histogram")
+    print(" --color        use color correction")
 
 
 # call main function

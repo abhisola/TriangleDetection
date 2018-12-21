@@ -4,8 +4,10 @@
 import sys
 import getopt
 import numpy as np
+
 sys.path.append('../ImageProcessing')
 from tools.recognizer import TriRecognizeParams, TriRecognizer
+
 
 # main program entry point - decode parameters, act accordingly
 def main(argv):
@@ -15,7 +17,8 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, "hi:b:ps",
                                    ["help", "arcmin=", "arcmax=", "areamin=", "areamax=", "paf=", "state", "nothresh",
-                                    "legmin=", "legmax=", "legvar=", "legratio=", "heightratio=", "expected=", "undistort=",
+                                    "legmin=", "legmax=", "legvar=", "legratio=", "heightratio=", "expected=",
+                                    "undistort=",
                                     "thresh=", "equhist", "color"])
     except getopt.GetoptError:
         usage()
@@ -110,6 +113,15 @@ def main(argv):
 
     recognizer = TriRecognizer()
     recognizer.processImage(srcImageFile, params)
+
+    print(
+        "STATS: minArc: {minArc}, maxArc: {maxArc}, minArea: {minArea}, maxArea: {maxArea}, minLeg: {minLeg}, maxLeg: {maxLeg}, maxRatio: {maxRatio}".format(
+            minArea=recognizer.minArea, maxArea=recognizer.maxArea,
+            minArc=recognizer.minArcL, maxArc=recognizer.maxArcL,
+            minLeg=recognizer.minLeg, maxLeg=recognizer.maxLeg,
+            maxRatio=recognizer.maxRatio
+        ))
+
 
 def usage():
     print("shelfspace.py parameters")

@@ -49,6 +49,14 @@ class TriRecognizer:
         self._legVarTriCount = 0
         self._finalTriCount = 0
 
+        self.minArea = sys.maxsize
+        self.maxArea = 0
+        self.minArcL = sys.maxsize
+        self.maxArcL = 0
+        self.minLeg = sys.maxsize
+        self.maxLeg = 0
+        self.maxRatio = 0
+
     def processImage(self, srcImageFile, params):
         self.__reset()
 
@@ -103,7 +111,7 @@ class TriRecognizer:
                 'CorrectLegVarTriangleCount': self._legVarTriCount,
                 'ImageWidth': imgwidth,
                 'ImageHeight': imgheight,
-                'TriangleCoords': tris
+                'TriangleCoords': triList
             },
             'TriangleCount': self._finalTriCount,
             'PercentFull': fullPercent}
@@ -248,20 +256,20 @@ class TriRecognizer:
     def __checkTriangleGeometry(self, shape, params, images, stateColor, stateLineWidth):
         arcLength = cv2.arcLength(shape, True)
 
-        if arcLength > params.minArcLength and arcLength < params.maxArcLength:
+        if params.minArcLength < arcLength < params.maxArcLength:
             self._arclenTriCount += 1
 
-            if params.outputState == True:
+            if params.outputState:
                 self.__drawTriangle(images[0], shape, stateColor, stateLineWidth)
 
             area = cv2.contourArea(shape)
 
-            if area > params.minArea and area < params.maxArea:
+            if params.minArea < area < params.maxArea:
                 self._areaTriCount += 1
                 # triName="tri" + str(self._finalTriCount)
                 # triList[triName]={"x1":int(shape[0][0][0]),"y1":shape[0][0][1],"x2":shape[1][0][0],"y2":shape[1][0][1],"x3":shape[2][0][0],"y3":shape[2][0][1]}
 
-                if params.outputState == True:
+                if params.outputState:
                     self.__drawTriangle(images[1], shape, stateColor, stateLineWidth)
 
                 leglen1 = TriRecognizer.__segLen(shape[0][0][0], shape[0][0][1], shape[1][0][0], shape[1][0][1])
@@ -272,14 +280,15 @@ class TriRecognizer:
                                 leglen1 < params.maxLegLength and leglen2 < params.maxLegLength and leglen3 < params.maxLegLength:
                     self._legLengthTriCount += 1
 
-                    if params.outputState == True:
+                    if params.outputState:
                         self.__drawTriangle(images[2], shape, stateColor, stateLineWidth)
 
                     legDiff = False
+                    legRatio1 = max(leglen1, leglen2) / min(leglen1, leglen2)
+                    legRatio2 = max(leglen1, leglen3) / min(leglen1, leglen3)
+                    legRatio3 = max(leglen3, leglen2) / min(leglen3, leglen2)
                     if params.legRatio >= 0:
-                        if (max(leglen1, leglen2) / min(leglen1, leglen2)) < params.legRatio and \
-                                        (max(leglen1, leglen3) / min(leglen1, leglen3)) < params.legRatio and \
-                                        (max(leglen3, leglen2) / min(leglen3, leglen2)) < params.legRatio:
+                        if legRatio1 < params.legRatio and legRatio2 < params.legRatio and legRatio3 < params.legRatio:
                             legDiff = True
                     else:
                         if abs(leglen1 - leglen2) < params.maxLegVar and \
@@ -290,7 +299,7 @@ class TriRecognizer:
                     if legDiff:
                         self._legVarTriCount += 1
 
-                        if params.outputState == True:
+                        if params.outputState:
                             self.__drawTriangle(images[3], shape, stateColor, stateLineWidth)
 
                         h1 = self.__pointDistance(shape[0][0][0], shape[0][0][1],
@@ -304,15 +313,23 @@ class TriRecognizer:
                                                   shape[1][0][0], shape[1][0][1])
 
                         # checking triangle heights
-                        if (leglen2 / h1) < params.heightLegRatio and (leglen3 / h1) < params.heightLegRatio and \
-                                        (leglen1 / h2) < params.heightLegRatio and (
-                                    leglen3 / h2) < params.heightLegRatio and \
-                                        (leglen1 / h3) < params.heightLegRatio and (
-                                    leglen2 / h3) < params.heightLegRatio:
+                        if (leglen2 / h1) < params.heightLegRatio and \
+                           (leglen3 / h1) < params.heightLegRatio and \
+                           (leglen1 / h2) < params.heightLegRatio and \
+                           (leglen3 / h2) < params.heightLegRatio and \
+                           (leglen1 / h3) < params.heightLegRatio and \
+                           (leglen2 / h3) < params.heightLegRatio:
 
-                            if params.outputState == True:
+                            if params.outputState:
                                 self.__drawTriangle(images[4], shape, stateColor, stateLineWidth)
 
+                            self.minArea = min(self.minArea, area)
+                            self.maxArea = max(self.maxArea, area)
+                            self.minArcL = min(self.minArcL, arcLength)
+                            self.maxArcL = max(self.maxArcL, arcLength)
+                            self.minLeg = min(self.minLeg, leglen1, leglen2, leglen3)
+                            self.maxLeg = max(self.maxLeg, leglen1, leglen2, leglen3)
+                            self.maxRatio = max(self.maxRatio, legRatio1, legRatio2, legRatio3)
                             return True
         return False
 
